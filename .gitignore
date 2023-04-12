@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+/src/components/signin-modal.jsx
+/src/pages/signin.jsx
+/src/pages/tes-signin.jsx
+

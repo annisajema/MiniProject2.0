@@ -132,7 +132,7 @@ function Carousel() {
                 <button
                   type="button"
                   className="btn btn-light btn-watch me-2"
-                  style={{
+                  style={{fontSize: "0.75rem",
                     // --bs-btn-padding-y: 0.5rem;
                     // --bs-btn-padding-x: 0.5rem;
                     // --bs-btn-font-size: 0.75rem;

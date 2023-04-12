@@ -1,6 +1,6 @@
-function Signin() {
+function SigninModal() {
     return (
-      <div
+      <div key={i}
         className="modal fade text-light"
         id="signInModal"
         tabIndex="-1"
@@ -81,4 +81,4 @@ function Signin() {
     );
 }
 
-export default Signin;
+export default SigninModal;

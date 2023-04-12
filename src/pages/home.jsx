@@ -80,7 +80,7 @@ function Home() {
                 return (
                   <div
                     key={i}
-                    className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 "
+                    className="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 col-xxl-1"
                   >
                     <div>
                       <div className="movie-container">
