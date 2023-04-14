@@ -17,12 +17,12 @@ function Home() {
   const getPopular = url.get("movie/popular", { params: { api_key } });
   // const result = [];
 
-  useEffect(() => {
-    getPopular.then((res) => {
-      setData(res.data.results.slice(0, 7));
-      console.log(res.data.results);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getPopular.then((res) => {
+  //     setData(res.data.results.slice(0, 7));
+  //     console.log(res.data.results);
+  //   });
+  // }, []);
 
   useEffect(() => {
     getPlaying.then((res) => {
@@ -223,7 +223,7 @@ function Home() {
           </div>
 
           {/* Card Trending Now*/}
-          <div className="row g-3 d-inline-flex" style={{ margin: "0 3%" }}>
+          {/* <div className="row g-3 d-inline-flex" style={{ margin: "0 3%" }}>
             <h4 id="dark-switch" className="text-light-emphasis mb-0">
               Popular
             </h4>
@@ -243,8 +243,6 @@ function Home() {
                           src={getImage(movie.poster_path)}
                         />
                         <div className="overlay-grid">
-                          {/* <div className="title-text">{movie.original_title}</div> */}
-                          {/* <div className="text-genre">Drama, Romance</div> */}
                         </div>
                         <div className="movie-title">
                           {movie.original_title}
@@ -368,33 +366,7 @@ function Home() {
                 );
               })}
             </div>
-            <div></div>
-
-            {/* <div
-              className="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-2 me-3 mb-3"
-              style={{ width: "150px", height: "200px" }}
-            >
-              <div
-                className="card"
-                style={{ border: "none", width: "150px" }}
-                data-bs-toggle="modal"
-                data-bs-target="#movie1"
-              >
-                {data.map((movie) => (
-                  <div className="card-body p-0">
-                    <img
-                      className="card-img"
-                      src={getImage(movie.poster_path)}
-                    />
-                    <div className="overlay">
-                      <div className="text">{movie.original_title}</div>
-                      <div className="text-genre">Drama, Romance</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div> */}
-          </div>
+          </div> */}
         </div>
 
         {/* Modal Sign In*/}
