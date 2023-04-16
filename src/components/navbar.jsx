@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import Signin from "./signin-modal";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import App from "../App";
 
@@ -16,11 +15,64 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Required"),
 });
 
-const Navbar = () => {
+function Navbar () {
   const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
-  const [detail, setDetail] = useState("");
+  // const [detail, setDetail] = useState("");
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+// const formik = useFormik({
+//   initialValues: {
+//     username: "",
+//     password: "",
+//   },
+//   validationSchema: Yup.object({
+//     username: Yup.string()
+//       .max(15, "Must be 15 characters or less")
+//       .required("Required"),
+//     password: Yup.string()
+//       .min(8, "Must be 8 characters or more")
+//       .required("Required"),
+//   }),
+//   onSubmit: async (values, { setSubmitting, setStatus }) => {
+//     try {
+//       const tokenResponse = await getToken;
+//       const token = tokenResponse.data.request_token;
+//       const authResponse = await url.post(
+//         "authentication/token/validate_with_login?api_key=cb2df51ab2003cdd9a5aa36d34347215",
+//         {
+//           username: values.username,
+//           password: values.password,
+//           request_token: token,
+//         }
+//       );
+//       const sessionResponse = await url.post(
+//         "authentication/session/new?api_key=cb2df51ab2003cdd9a5aa36d34347215",
+//         {
+//           api_key: api_key,
+//           request_token: token,
+//         }
+//       );
+//       const sessionId = sessionResponse.data.session_id;
+//       setSessionId(sessionId);
+//       localStorage.setItem("sessionId", sessionId);
+//       setSubmitting(false);
+//     } catch (error) {
+//       setStatus(error.response.data.status_message);
+//       setSubmitting(false);
+//     }
+//   }
+// });
+
 
   const handleLogin = async (values, { setSubmitting, setStatus }) => {
     try {
@@ -52,15 +104,15 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    setSessionId(null);
-    localStorage.removeItem("sessionId");
+    setSessionId();
+    localStorage.removeItem("sessionId", sessionId);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       if (sessionId) {
-        const response = await axios.get(
-          "https://api.themoviedb.org/3/account",
+        const response = await url.get(
+          "account",
           {
             params: {
               api_key: api_key,
@@ -75,8 +127,12 @@ const Navbar = () => {
     fetchData();
   }, [sessionId]);
 
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
           <div className="container-fluid">
@@ -116,7 +172,7 @@ const Navbar = () => {
                   >
                     Movies
                   </a>
-                  <ul
+                  {/* <ul
                     className="dropdown-menu w-auto h-auto"
                     style={{ backgroundColor: "rgb(13, 13, 13)" }}
                   >
@@ -144,7 +200,7 @@ const Navbar = () => {
                         Romance
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li className="nav-item">
                   <a className="nav-link active" href="series.html">
@@ -155,7 +211,7 @@ const Navbar = () => {
 
               {/* Search bar */}
 
-              <form className="d-flex search-bar" role="search">
+              {/* <form className="d-flex search-bar" role="search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -172,10 +228,10 @@ const Navbar = () => {
                   placeholder="Search"
                   aria-label="Search"
                 />
-              </form>
+              </form> */}
 
               {/* Dropdown Notif */}
-              <div>
+              {/* <div>
                 <div id="toggle-hide-show" className="btn-group">
                   <button
                     id="notif"
@@ -264,19 +320,34 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
 
               {/* Sign In */}
               <div>
-                <div>
-                  <button
-                    className="btn btn-link btn-nav text-decoration-none link-light"
-                    data-bs-toggle="modal"
-                    data-bs-target="#signInModal"
-                  >
-                    Sign in
-                  </button>
-                </div>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <div
+                      className="nav-link active"
+                      data-bs-toggle="modal"
+                      data-bs-target="#signInModal"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-person-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path
+                          fillRule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                        />
+                      </svg>
+                    </div>
+                  </li>
+                </ul>
               </div>
 
               {/* Contact Us */}
@@ -284,18 +355,37 @@ const Navbar = () => {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
                     <a className="nav-link active" href="/contact">
-                      Contact Us
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-question-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                      </svg>
                     </a>
                   </li>
                 </ul>
               </div>
 
               {/* Dark Mode */}
-
-              <button
+              <div className="form-check form-switch" onClick={toggleTheme}>
+                <input
+                  className="navbar-nav form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                  // data-onstyle="secondary"
+                />
+              </div>
+              {/* <button
                 id="dark-switch"
-                style={{ backgroundColor: "black" }}
-                className="btn btn-secondary"
+                onClick={toggleTheme}
+                style={{ backgroundColor: "rgb(39, 7, 46)", borderColor:"rgb(39, 7, 46)" }}
+                className={"btn btn-secondary"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -307,7 +397,7 @@ const Navbar = () => {
                 >
                   <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"></path>
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </nav>
@@ -329,7 +419,7 @@ const Navbar = () => {
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
-                <div className="mb-4 text-light signin-text">Sign in</div>
+                <div className="mt-5 mb-4 text-light signin-text">Sign in</div>
                 <div>
                   {!sessionId && (
                     <Formik
@@ -340,21 +430,31 @@ const Navbar = () => {
                       {({ isSubmitting, status }) => (
                         <Form>
                           {status && <div>{status}</div>}
-                          <div className="d-flex flex-column mb-2">
+                          <div className="d-flex flex-column mb-2 m-1">
+                            Username
                             <Field
                               type="username"
                               name="username"
                               placeholder="Username"
                             />
+                            <ErrorMessage
+                              name="username"
+                              component="div"
+                              style={{ color: "red" }}
+                            />
                           </div>
-                          <div className="d-flex flex-column mb-2">
-                            <ErrorMessage name="username" component="div" />
+                          Password
+                          <div className="d-flex flex-column mb-4 m-1">
                             <Field
                               type="password"
                               name="password"
                               placeholder="Password"
                             />
-                            <ErrorMessage name="password" component="div" />
+                            <ErrorMessage
+                              name="password"
+                              component="div"
+                              style={{ color: "red" }}
+                            />
                           </div>
                           <div>
                             <a
@@ -385,7 +485,7 @@ const Navbar = () => {
                     </Formik>
                   )}
                   {sessionId && (
-                    <div>
+                    <div className="mt-4">
                       <ul>
                         {username && userId && (
                           <div>
@@ -396,7 +496,7 @@ const Navbar = () => {
                         )}
                       </ul>
                       <button
-                        className="btn btn-secondary mb-2"
+                        className="btn btn-secondary mt-4 mb-3"
                         style={{
                           width: "100%",
                           display: "flex",

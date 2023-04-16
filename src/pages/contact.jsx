@@ -10,7 +10,6 @@ function Contact() {
   return (
     <div classNameName="App">
       <Navbar />
-
       <div className="container">
         <div className="form-contact">
           <h1 className="mb-3">Contact Us</h1>
