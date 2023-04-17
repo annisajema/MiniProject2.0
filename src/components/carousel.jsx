@@ -8,7 +8,6 @@ const SEARCH_URL =
 const getImage = (path) => `https://image.tmdb.org/t/p/original/${path}`;
 
 function Carousel() {
-  const [data, setData] = useState([]);
   const [playing, setPlaying] = useState([]);
   const url = axios.create({ baseURL: BASE_URL });
   const getPlaying = url.get("movie/now_playing", { params: { api_key } });
@@ -99,8 +98,6 @@ function Carousel() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      {/* );
-      })} */}
     </div>
   );
 }

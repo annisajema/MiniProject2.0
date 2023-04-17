@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import App from "../App";
+import SigninModal from "./signin-modal";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const api_key = "cb2df51ab2003cdd9a5aa36d34347215";
-const url = axios.create({ baseURL: BASE_URL });
-const getToken = url.get("authentication/token/new", { params: { api_key } });
+// const avatar_hash =
+//   "https://image.tmdb.org/t/p/w45/nq91MCGHrEb2b0hLQhxtxdE8cTF.jpg";
+// const url = axios.create({ baseURL: BASE_URL });
+// const getImage = (path) => `https://image.tmdb.org/t/p/original/${path}`;
+// const getToken = url.get("authentication/token/new", { params: { api_key } });
 // const getAuth = url.post("authentication/token/validate_with_login", { params: { api_key }});
 
-const LoginSchema = Yup.object().shape({
-  username: Yup.string().required("Required"),
-  password: Yup.string().required("Required"),
-});
+// const LoginSchema = Yup.object().shape({
+//   username: Yup.string().required("Required"),
+//   password: Yup.string().required("Required"),
+// });
 
 function Navbar () {
-  const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
+  // const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
   // const [detail, setDetail] = useState("");
-  const [username, setUsername] = useState("");
-  const [userId, setUserId] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [userId, setUserId] = useState("");
+  // const [avatar, setAvatar] = useState("");
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -74,58 +75,60 @@ function Navbar () {
 // });
 
 
-  const handleLogin = async (values, { setSubmitting, setStatus }) => {
-    try {
-      const tokenResponse = await getToken;
-      const token = tokenResponse.data.request_token;
-      const authResponse = await url.post(
-        "authentication/token/validate_with_login?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-        {
-          username: values.username,
-          password: values.password,
-          request_token: token,
-        }
-      );
-      const sessionResponse = await url.post(
-        "authentication/session/new?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-        {
-          api_key: api_key,
-          request_token: token,
-        }
-      );
-      const sessionId = sessionResponse.data.session_id;
-      setSessionId(sessionId);
-      localStorage.setItem("sessionId", sessionId);
-      setSubmitting(false);
-    } catch (error) {
-      setStatus(error.response.data.status_message);
-      setSubmitting(false);
-    }
-  };
+  // const handleLogin = async (values, { setSubmitting, setStatus }) => {
+  //   try {
+  //     const tokenResponse = await getToken;
+  //     const token = tokenResponse.data.request_token;
+  //     const authResponse = await url.post(
+  //       "authentication/token/validate_with_login?api_key=cb2df51ab2003cdd9a5aa36d34347215",
+  //       {
+  //         username: values.username,
+  //         password: values.password,
+  //         request_token: token,
+  //       }
+  //     );
+  //     const sessionResponse = await url.post(
+  //       "authentication/session/new?api_key=cb2df51ab2003cdd9a5aa36d34347215",
+  //       {
+  //         api_key: api_key,
+  //         request_token: token,
+  //       }
+  //     );
+  //     const sessionId = sessionResponse.data.session_id;
+  //     setSessionId(sessionId);
+  //     localStorage.setItem("sessionId", sessionId);
+  //     setSubmitting(false);
+  //   } catch (error) {
+  //     setStatus(error.response.data.status_message);
+  //     setSubmitting(false);
+  //   }
+  // };
 
-  const handleLogout = () => {
-    setSessionId();
-    localStorage.removeItem("sessionId", sessionId);
-  };
+  // const handleLogout = () => {
+  //   setSessionId();
+  //   localStorage.removeItem("sessionId", sessionId);
+  // };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (sessionId) {
-        const response = await url.get(
-          "account",
-          {
-            params: {
-              api_key: api_key,
-              session_id: sessionId,
-            },
-          }
-        );
-        setUsername(response.data.username);
-        setUserId(response.data.id);
-      }
-    };
-    fetchData();
-  }, [sessionId]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (sessionId) {
+  //       const response = await url.get(
+  //         "account",
+  //         {
+  //           params: {
+  //             api_key: api_key,
+  //             session_id: sessionId,
+  //           },
+  //         }
+  //       );
+  //       setUsername(response.data.username);
+  //       setUserId(response.data.id);
+  //       setAvatar(response.data.avatar);
+    
+  //     }
+  //   };
+  //   fetchData();
+  // }, [sessionId]);
 
   useEffect(() => {
     document.body.className = theme;
@@ -203,7 +206,7 @@ function Navbar () {
                   </ul> */}
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" href="series.html">
+                  <a className="nav-link active" href="">
                     Series
                   </a>
                 </li>
@@ -378,7 +381,6 @@ function Navbar () {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckDefault"
-                  // data-onstyle="secondary"
                 />
               </div>
               {/* <button
@@ -403,7 +405,7 @@ function Navbar () {
         </nav>
 
         {/* Modal Sign In*/}
-        <div
+        {/* <div
           className="modal fade text-light"
           id="signInModal"
           tabIndex="-1"
@@ -415,7 +417,7 @@ function Navbar () {
               <div className="sign-in">
                 <button
                   type="button"
-                  className="btn-close btn-close-signin-modal btn-close-white"
+                  className="btn-close btn-close-signin-modal btn-close-white float-end"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
@@ -430,7 +432,7 @@ function Navbar () {
                       {({ isSubmitting, status }) => (
                         <Form>
                           {status && <div>{status}</div>}
-                          <div className="d-flex flex-column mb-2 m-1">
+                          <div className="d-flex flex-column mt-5 mb-2 m-1">
                             Username
                             <Field
                               type="username"
@@ -487,8 +489,12 @@ function Navbar () {
                   {sessionId && (
                     <div className="mt-4">
                       <ul>
-                        {username && userId && (
-                          <div>
+                        {username && userId && avatar && (
+                          <div className="d-flex justify-content-center align-items-center mt-5">
+                            <img
+                              className="me-3 rounded-2 h-50"
+                              src={avatar_hash}
+                            />
                             Username: {username}
                             <br />
                             User ID: {userId}
@@ -496,7 +502,7 @@ function Navbar () {
                         )}
                       </ul>
                       <button
-                        className="btn btn-secondary mt-4 mb-3"
+                        className="btn btn-secondary mt-5 mb-3"
                         style={{
                           width: "100%",
                           display: "flex",
@@ -509,29 +515,12 @@ function Navbar () {
                       </button>
                     </div>
                   )}
-                  {/* <h3>Login Success!</h3> */}
                 </div>
-
-                {/* <div className="d-flex flex-column">
-                  <button
-                    type="submit"
-                    className="btn btn-light mb-2"
-                    style={{
-                      backgroundColor: "rgb(159, 100, 214)",
-                      color: "white",
-                      borderColor: "rgb(159, 100, 214)",
-                    }}
-                  >
-                    Sign In
-                  </button>
-                  <button type="button" className="btn btn-secondary mb-2">
-                    Sign Up
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <SigninModal />
       </div>
     </div>
   );
