@@ -107,7 +107,7 @@ function SigninModal() {
                         <Field
                           type="username"
                           name="username"
-                          placeholder="Username"
+                          placeholder="type: annisajema"
                         />
                         <ErrorMessage
                           name="username"
@@ -120,7 +120,7 @@ function SigninModal() {
                         <Field
                           type="password"
                           name="password"
-                          placeholder="Password"
+                          placeholder="type: 1234"
                         />
                         <ErrorMessage
                           name="password"
