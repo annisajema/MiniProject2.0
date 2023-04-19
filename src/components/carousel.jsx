@@ -22,7 +22,6 @@ function Carousel() {
   return (
     <div className="App">
       {/* Carousel */}
-
       <div
         id="carouselExampleIndicators"
         className="carousel slide carousel-fade"
@@ -55,7 +54,7 @@ function Carousel() {
         <div className="carousel-inner">
           {/* <div> */}
           {playing.slice(0, 3).map((movie, i) => (
-            <div key={i}> 
+            <div key={i}>
               <div className="carousel-item active" data-bs-interval="3000">
                 <img
                   src={getImage(movie.backdrop_path)}

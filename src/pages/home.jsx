@@ -17,7 +17,7 @@ function Home() {
 
   useEffect(() => {
     getPlaying.then((response) => {
-      setPlaying(response.data.results.slice(0, 12));
+      setPlaying(response.data.results);
       console.log(response.data.results);
     });
   }, []);
@@ -32,7 +32,7 @@ function Home() {
               Now Playing
             </h4>
 
-            {playing.map((movie, i) => {
+            {playing.slice(0, 12).map((movie, i) => {
               return (
                 <div
                   key={i}
