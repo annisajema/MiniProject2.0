@@ -38,5 +38,5 @@ npm run dev
 ```
 
 ## Demo
-[Cinema Movie Web](cinema-movie-web.netlify.app)
+[Cinema Movie Web](https://cinema-movie-web.netlify.app)
 
