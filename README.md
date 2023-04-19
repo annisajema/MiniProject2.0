@@ -37,3 +37,6 @@ npm install
 npm run dev
 ```
 
+## Demo
+cinema-movie-web.netlify.app
+
