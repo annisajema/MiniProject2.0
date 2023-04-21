@@ -4,11 +4,11 @@ A movie database website called "Cinema" that provides information about films a
 
 ## Library 
 
-- Create Request Token.
-- Create Session with Login.
-- Create Session.
-- Get Details.
-- Get Now Playing.
+- React.
+- Axios.
+- Formik.
+- Yup.
+- ReactDOM.
 
 ## Features
 
