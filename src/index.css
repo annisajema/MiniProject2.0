@@ -1,7 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  /* font-weight: 400; */
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -15,7 +14,6 @@
 }
 
 a {
-  /* font-weight: 500; */
   color: #646cff;
   text-decoration: inherit;
 }
@@ -82,9 +80,6 @@ button:focus-visible {
   font-weight: 300;
 }
 
-/* html body {
-  background-color: rgb(13, 13, 13);
-} */
 
 .container {
   padding: 30px;
@@ -125,16 +120,13 @@ button:focus-visible {
   margin-top: 30px;
 }
 
-/* #carouselExampleIndicators {
-  margin-top: 70px;
-} */
 
 .carousel-item,
 .carousel-item > img {
   display: block;
   width: 100%;
   object-fit: cover;
-  height: 40vw;
+  height: 43vw;
   object-position: 0 23%;
 }
 
@@ -157,8 +149,8 @@ button:focus-visible {
 
 .carousel-text {
   text-align: left;
-  padding-right: 30%;
-  font-size: 1.5vw;
+  /* padding-right: 20%; */
+  font-size: 1.8vw;
 }
 
 .carousel-btn {
@@ -196,13 +188,10 @@ button:focus-visible {
 }
 
 .sign-in {
-  position: absolute;
-  width: 450px;
-  height: 500px;
+  position: relative;
   background-color: rgb(39, 7, 46);
   border-radius: 25px;
   padding: 20px 30px;
-  margin: 20px;
 }
 
 .signin-text {
@@ -232,14 +221,6 @@ button:focus-visible {
   margin: 10px 20px;
 }
 
-/* .form-contact {
-  margin: 100px 100px;
-  padding: 0px 50px;
-} */
-
-/* .card-img-top {
-  border-radius: 5px;
-} */
 
 .list-group-item {
   width: 30px;
@@ -249,15 +230,11 @@ button:focus-visible {
 .card,
 .card > img {
   display: block;
-  /* object-fit: cover; 
-  height: 200px;  */
 }
 
 .card-img {
   position: relative;
   border-radius: 5px;
-  /* width: 13vw; */
-  /* flex: 3; */
 }
 
 .card {
@@ -272,17 +249,6 @@ button:focus-visible {
   justify-content: center;
 }
 
-/* .overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
-} */
-
 .overlay {
   position: absolute;
   bottom: 0;
@@ -290,7 +256,6 @@ button:focus-visible {
   width: 100%;
   transition: 0.5s ease;
   opacity: 0;
-  /* padding-bottom: 150px; */
   font-size: 20px;
   padding: 70px;
   border-radius: 5px;
@@ -301,25 +266,15 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* bottom: 0; */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.945), transparent);
-  /* width: 100%; */
   transition: 0.5s ease;
   opacity: 0;
-  /* padding-bottom: 150px; */
   font-size: 20px;
-  /* padding: 10px; */
-  /* padding-left: 30px;
-  margin-bottom: 100px; */
   border-radius: 5px;
 }
 
-/* .overlay-grid:hover{
-  opacity: 0.9;
-} */
 
 .card-body:hover .overlay-grid {
-  /* opacity: 0.8; */
   transition: 0.3s;
 }
 
@@ -330,7 +285,6 @@ button:focus-visible {
 
 .card-body:hover {
   transform: scale(1.05);
-  /* filter: opacity(0.5); */
 }
 
 .card-body:hover .title-text {
@@ -343,13 +297,10 @@ button:focus-visible {
   font-size: 12px;
   font-weight: 500;
   position: absolute;
-  /* display: inline; */
   top: 75%;
   left: 50%;
-  /* right: 5%; */
   transform: translate(-50%, -50%);
   width: 140px;
-  /* text-align: center; */
 }
 
 .title-text {
@@ -357,15 +308,11 @@ button:focus-visible {
   font-size: 1em;
   font-weight: 600;
   position: absolute;
-  /* display: inline; */
-  /* top: 50px; */
-  /* bottom: 5px; */
   padding-bottom: 10px;
   left: 65px;
   transform: translate(-50%, -50%);
   width: 120px;
   z-index: 2;
-  /* text-align: center; */
 }
 
 .movie-title {
@@ -373,18 +320,14 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  /* font-family: "Anton", sans-serif; */
 }
 
 .text-genre {
   color: white;
   font-size: 12px;
   position: absolute;
-  /* display: inline; */
   top: 85%;
   left: 50%;
-  /* right: 5%; */
-  /* width: 150px; */
   transform: translate(-50%, -50%);
   width: 140px;
 }
@@ -403,9 +346,7 @@ button:focus-visible {
 .modal-content,
 .modal-content > img {
   width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  /* filter: brightness(80%) contrast(60%); */
+  border-radius: 25px;
   position: absolute;
 }
 
@@ -436,10 +377,7 @@ button:focus-visible {
   top: 7vw;
   left: 30vw;
   right: 5vw;
-  /* color: darkgrey; */
   font-size: 1.3vw;
-  /* font-weight:500; */
-  /* opacity: 80%; */
 }
 
 .modal-movie-score {
@@ -449,30 +387,22 @@ button:focus-visible {
   right: 5vw;
   color: darkgrey;
   font-size: 1.3vw;
-  /* font-weight:500; */
 }
 
 .modal-body, .modal-body > .modal-img{
   position: absolute;
-  width: 23vw;
+  width: 20vw;
   margin: 0.8vw;
   border-radius: 5px;
 }
 
-/* .modal-overview {
-  top: 80px;
-  left: 380px;
-  
-} */
 
 .overview {
   position: absolute;
   top: 10vw;
   left: 30vw;
   right: 5vw;
-  /* color: darkgrey; */
-  font-size: 1.5vw;
-  /* font-weight:500; */
+  font-size: 2vw;
   opacity: 80%;
   
 }

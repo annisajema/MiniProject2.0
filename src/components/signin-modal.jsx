@@ -10,7 +10,6 @@ const avatar_hash =
 const url = axios.create({ baseURL: BASE_URL });
 const getImage = (path) => `https://image.tmdb.org/t/p/original/${path}`;
 const getToken = url.get("authentication/token/new", { params: { api_key } });
-// const getAuth = url.post("authentication/token/validate_with_login", { params: { api_key }});
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -128,7 +127,7 @@ function SigninModal() {
                           style={{ color: "red" }}
                         />
                       </div>
-                      <div>
+                      <div className="pb-5">
                         <a
                           className="nav-link active"
                           aria-current="page"

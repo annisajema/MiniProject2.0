@@ -3,24 +3,8 @@ import SigninModal from "./signin-modal";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const api_key = "cb2df51ab2003cdd9a5aa36d34347215";
-// const avatar_hash =
-//   "https://image.tmdb.org/t/p/w45/nq91MCGHrEb2b0hLQhxtxdE8cTF.jpg";
-// const url = axios.create({ baseURL: BASE_URL });
-// const getImage = (path) => `https://image.tmdb.org/t/p/original/${path}`;
-// const getToken = url.get("authentication/token/new", { params: { api_key } });
-// const getAuth = url.post("authentication/token/validate_with_login", { params: { api_key }});
-
-// const LoginSchema = Yup.object().shape({
-//   username: Yup.string().required("Required"),
-//   password: Yup.string().required("Required"),
-// });
 
 function Navbar () {
-  // const [sessionId, setSessionId] = useState(localStorage.getItem("sessionId"));
-  // const [detail, setDetail] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [userId, setUserId] = useState("");
-  // const [avatar, setAvatar] = useState("");
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -30,105 +14,6 @@ function Navbar () {
       setTheme("light");
     }
   };
-
-// const formik = useFormik({
-//   initialValues: {
-//     username: "",
-//     password: "",
-//   },
-//   validationSchema: Yup.object({
-//     username: Yup.string()
-//       .max(15, "Must be 15 characters or less")
-//       .required("Required"),
-//     password: Yup.string()
-//       .min(8, "Must be 8 characters or more")
-//       .required("Required"),
-//   }),
-//   onSubmit: async (values, { setSubmitting, setStatus }) => {
-//     try {
-//       const tokenResponse = await getToken;
-//       const token = tokenResponse.data.request_token;
-//       const authResponse = await url.post(
-//         "authentication/token/validate_with_login?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-//         {
-//           username: values.username,
-//           password: values.password,
-//           request_token: token,
-//         }
-//       );
-//       const sessionResponse = await url.post(
-//         "authentication/session/new?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-//         {
-//           api_key: api_key,
-//           request_token: token,
-//         }
-//       );
-//       const sessionId = sessionResponse.data.session_id;
-//       setSessionId(sessionId);
-//       localStorage.setItem("sessionId", sessionId);
-//       setSubmitting(false);
-//     } catch (error) {
-//       setStatus(error.response.data.status_message);
-//       setSubmitting(false);
-//     }
-//   }
-// });
-
-
-  // const handleLogin = async (values, { setSubmitting, setStatus }) => {
-  //   try {
-  //     const tokenResponse = await getToken;
-  //     const token = tokenResponse.data.request_token;
-  //     const authResponse = await url.post(
-  //       "authentication/token/validate_with_login?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-  //       {
-  //         username: values.username,
-  //         password: values.password,
-  //         request_token: token,
-  //       }
-  //     );
-  //     const sessionResponse = await url.post(
-  //       "authentication/session/new?api_key=cb2df51ab2003cdd9a5aa36d34347215",
-  //       {
-  //         api_key: api_key,
-  //         request_token: token,
-  //       }
-  //     );
-  //     const sessionId = sessionResponse.data.session_id;
-  //     setSessionId(sessionId);
-  //     localStorage.setItem("sessionId", sessionId);
-  //     setSubmitting(false);
-  //   } catch (error) {
-  //     setStatus(error.response.data.status_message);
-  //     setSubmitting(false);
-  //   }
-  // };
-
-  // const handleLogout = () => {
-  //   setSessionId();
-  //   localStorage.removeItem("sessionId", sessionId);
-  // };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (sessionId) {
-  //       const response = await url.get(
-  //         "account",
-  //         {
-  //           params: {
-  //             api_key: api_key,
-  //             session_id: sessionId,
-  //           },
-  //         }
-  //       );
-  //       setUsername(response.data.username);
-  //       setUserId(response.data.id);
-  //       setAvatar(response.data.avatar);
-    
-  //     }
-  //   };
-  //   fetchData();
-  // }, [sessionId]);
 
   useEffect(() => {
     document.body.className = theme;
@@ -175,155 +60,61 @@ function Navbar () {
                   >
                     Movies
                   </a>
-                  {/* <ul
+                  <ul
                     className="dropdown-menu w-auto h-auto"
                     style={{ backgroundColor: "rgb(13, 13, 13)" }}
                   >
                     <li>
                       <a
                         className="dropdown-item text-light dropdown-menu-dark"
-                        href="movies(asian).html"
+                        href="/movies-playing"
                       >
-                        Asian
+                        Now Playing
                       </a>
                     </li>
                     <li>
                       <a
                         className="dropdown-item text-light dropdown-menu-dark"
-                        href="movies(comedy).html"
+                        href="/movies-popular"
                       >
-                        Comedy
+                        Popular
                       </a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a
                         className="dropdown-item text-light dropdown-menu-dark"
                         href="movies(romance).html"
                       >
                         Romance
                       </a>
-                    </li>
-                  </ul> */}
+                    </li> */}
+                  </ul>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="">
-                    Series
-                  </a>
-                </li>
-              </ul>
-
-              {/* Search bar */}
-
-              {/* <form className="d-flex search-bar" role="search">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-search"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
-                <input
-                  className="search-bar"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-              </form> */}
-
-              {/* Dropdown Notif */}
-              {/* <div>
-                <div id="toggle-hide-show" className="btn-group">
-                  <button
-                    id="notif"
-                    className="btn btn-link text-decoration-none link-light"
-                    type="button"
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link active"
+                    href="movie.html"
+                    role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-bell"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                    </svg>
-                    <span
-                      id="dropdown-notif"
-                      className="position-absolute top-20 start-60 translate-middle p-1 rounded-circle badge-notif"
-                      style={{ backgroundColor: "rgb(159, 100, 214)" }}
-                    ></span>
-                  </button>
+                    Series
+                  </a>
                   <ul
-                    className="dropdown-menu dropdown-menu-lg-end"
-                    style={{ backgroundColor: "rgba(39, 7, 46, 0.9)" }}
+                    className="dropdown-menu w-auto h-auto"
+                    style={{ backgroundColor: "rgb(13, 13, 13)" }}
                   >
                     <li>
-                      <div
-                        className="alert alert-success alert-dismissible fade show"
-                        role="alert"
+                      <a
+                        className="dropdown-item text-light dropdown-menu-dark"
+                        href="/series-popular"
                       >
-                        New movie releases, check it out!
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="alert"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="list-group bg-black text-light border-0 rounded-3 mb-1 p-2"
-                        aria-current="true"
-                      >
-                        <a
-                          href="movies(asian).html"
-                          className="text-decoration-none text-light"
-                        >
-                          <img
-                            src="https://resizing.flixster.com/jwnF5F7p2Ogsvm4sFoFSzu9PmHw=/300x300/v2/https://resizing.flixster.com/xkP5Au0QZpS3o13TgBmswdBC_bA=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE2NTBhZGRkLTM5ZTAtNDU5Yy1hOTYyLTI4YTEyMmJkZTRlNi5qcGc="
-                            className="float-sm-start me-3"
-                            alt=""
-                            width="60px"
-                            height="80px"
-                          />
-                          <h5>Demon Slayer the Movie: Mugen Train</h5>
-                          <h6>2020</h6>
-                          <small className="mb-2">Animation</small>
-                        </a>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="list-group bg-black text-light border-0 rounded-3 mb-1 p-2"
-                        aria-current="true"
-                      >
-                        <a
-                          href="movies(asian).html"
-                          className="text-decoration-none text-light"
-                        >
-                          <img
-                            src="https://m.media-amazon.com/images/M/MV5BODM0NmVjMzUtOTJhNi00N2ZhLWFkYmMtYmZmNjRiY2M1YWY4XkEyXkFqcGdeQXVyOTgxOTA5MDg@._V1_QL75_UX380_CR0,4,380,562_.jpg"
-                            className="float-sm-start me-3"
-                            alt=""
-                            width="60px"
-                            height="80px"
-                          />
-                          <h5>Jujutsu Kaisen 0: The Movie</h5>
-                          <h6>2021</h6>
-                          <small className="mb-2">Animation</small>
-                        </a>
-                      </div>
+                        Popular
+                      </a>
                     </li>
                   </ul>
-                </div>
-              </div> */}
+                </li>
+              </ul>
 
               {/* Sign In */}
               <div>
@@ -383,143 +174,12 @@ function Navbar () {
                   id="flexSwitchCheckDefault"
                 />
               </div>
-              {/* <button
-                id="dark-switch"
-                onClick={toggleTheme}
-                style={{ backgroundColor: "rgb(39, 7, 46)", borderColor:"rgb(39, 7, 46)" }}
-                className={"btn btn-secondary"}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-lightbulb-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"></path>
-                </svg>
-              </button> */}
+             
             </div>
           </div>
         </nav>
 
-        {/* Modal Sign In*/}
-        {/* <div
-          className="modal fade text-light"
-          id="signInModal"
-          tabIndex="-1"
-          aria-labelledby="signInModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content border-0">
-              <div className="sign-in">
-                <button
-                  type="button"
-                  className="btn-close btn-close-signin-modal btn-close-white float-end"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-                <div className="mt-5 mb-4 text-light signin-text">Sign in</div>
-                <div>
-                  {!sessionId && (
-                    <Formik
-                      initialValues={{ username: "", password: "" }}
-                      validationSchema={LoginSchema}
-                      onSubmit={handleLogin}
-                    >
-                      {({ isSubmitting, status }) => (
-                        <Form>
-                          {status && <div>{status}</div>}
-                          <div className="d-flex flex-column mt-5 mb-2 m-1">
-                            Username
-                            <Field
-                              type="username"
-                              name="username"
-                              placeholder="Username"
-                            />
-                            <ErrorMessage
-                              name="username"
-                              component="div"
-                              style={{ color: "red" }}
-                            />
-                          </div>
-                          Password
-                          <div className="d-flex flex-column mb-4 m-1">
-                            <Field
-                              type="password"
-                              name="password"
-                              placeholder="Password"
-                            />
-                            <ErrorMessage
-                              name="password"
-                              component="div"
-                              style={{ color: "red" }}
-                            />
-                          </div>
-                          <div>
-                            <a
-                              className="nav-link active"
-                              aria-current="page"
-                              href="/"
-                            >
-                              <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="btn btn-light mb-2"
-                                style={{
-                                  backgroundColor: "rgb(159, 100, 214)",
-                                  color: "white",
-                                  borderColor: "rgb(159, 100, 214)",
-                                  width: "100%",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                }}
-                              >
-                                Login
-                              </button>
-                            </a>
-                          </div>
-                        </Form>
-                      )}
-                    </Formik>
-                  )}
-                  {sessionId && (
-                    <div className="mt-4">
-                      <ul>
-                        {username && userId && avatar && (
-                          <div className="d-flex justify-content-center align-items-center mt-5">
-                            <img
-                              className="me-3 rounded-2 h-50"
-                              src={avatar_hash}
-                            />
-                            Username: {username}
-                            <br />
-                            User ID: {userId}
-                          </div>
-                        )}
-                      </ul>
-                      <button
-                        className="btn btn-secondary mt-5 mb-3"
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+        
         <SigninModal />
       </div>
     </div>

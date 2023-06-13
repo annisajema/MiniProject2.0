@@ -10,9 +10,6 @@ const getImage = (path) => `https://image.tmdb.org/t/p/original/${path}`;
 function Home() {
   const [playing, setPlaying] = useState([]);
   const url = axios.create({ baseURL: BASE_URL });
-  // const getPopular = url.get("movie/popular", { params: { api_key } });
-  // const search = url.get("search/movie", { params: { api_key, query } });
-
   const getPlaying = url.get("movie/now_playing", { params: { api_key } });
 
   useEffect(() => {
@@ -61,10 +58,9 @@ function Home() {
                     aria-labelledby="movie1Label"
                     aria-hidden="true"
                   >
-                    <div className="modal-dialog modal-dialog-centered modal-xl">
+                    <div className="modal-dialog modal-xl mt-5">
                       <div
                         className="modal-content"
-                        // style={{ backgroundColor: "rgba(13, 13, 13, 0.9)" }}
                       >
                         <img
                           src={getImage(movie.backdrop_path)}
